@@ -14,14 +14,17 @@ tmp_article_details = {}
 
 # Sets the year we are searching for in the url
 def set_search_url(year):
-	tdnews_url = 'http://www.nydailynews.com/search-results/search-results-7.113?q=bronx,%20gun&selecturl=site&sortOrder=desc&pdate=' + str(year) + '-01-01&edate=' + str(year) + '-12-31&tfq=articles&afq=&page='
+	tdnews_url = ('http://www.nydailynews.com/search-results/search-results-7.113?q=bronx,%20gun&selecturl=site&sortOrder=desc&pdate=' 
+		      	+ str(year) + '-01-01&edate=' + str(year) + '-12-31&tfq=articles&afq=&page=')
 	return tdnews_url
 
 # Scrapes URL search page for links
 def tdn_scrape(url):
 	for page_num in range(1,48):
 		#t0 = time.time()
-		headers = {'user-agent': 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_12_3) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/57.0.2987.133 Safari/537.36'}
+		headers = {'user-agent': 
+			   'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_12_3) AppleWebKit/537.36 (KHTML, like Gecko) '
+			   	'Chrome/57.0.2987.133 Safari/537.36'}
 		paged_url = url + str(page_num)
 		get_page = requests.get(paged_url, headers=headers)
 		page_results = BeautifulSoup(get_page.content, 'html.parser')
