@@ -12,6 +12,7 @@ tmp_article_links = []
 news_api_links = []
 tmp_article_details = {}
 
+
 # Sets the year we are searching for in the url
 def set_search_url(year):
 	tdnews_url = ('http://www.nydailynews.com/search-results/search-results-7.113?q=bronx,%20gun&selecturl=site&sortOrder='
@@ -39,21 +40,8 @@ def tdn_scrape(url):
 		#response_delay = time.time() - t0 # be polite!
 		#time.sleep(10*response_delay)  # wait 10x longer than it took site to respond
 
-search_year = input("Please enter the year to search for: ")
-url = set_search_url(search_year)
-tdn_scrape(url)
-#print tmp_article_links
-
-# Prepends daily news url to links
-article_links = ['http://www.nydailynews.com{0}'.format(l) for l in tmp_article_links]
-#print (article_links)
-
-# Remove paginated links
-news_links = [y for y in article_links if not '&page=' in y]
-#print (news_links)
-
 # Passes links into newspaper api to create dict of titles, keywords, and urls
-def newspaper_api_dict():
+def newspaper_api_dict(news_links):
 	for article_link in news_links:
 		article = Article(article_link)
 		try:
@@ -64,15 +52,13 @@ def newspaper_api_dict():
 				'title': article.title,
 				'keywords': article.keywords,
 				'link': article.url,
-			}
+			}			
 			news_api_links.append(tmp_article_details)
 		except Exception:
 			print ('we will continue after this short error')
 			continue
 
 	#print (news_api_links)
-
-newspaper_api_dict()
 
 # Writes dictionary to CSV file
 def write_to_file():
@@ -85,4 +71,27 @@ def write_to_file():
 		for value in news_api_links:
 				write_to_file.writerow(value)
 
-write_to_file()
+
+''''''
+def main():
+
+	search_year = input("Please enter the year to search for: ")
+	url = set_search_url(search_year)
+	tdn_scrape(url)
+	#print tmp_article_links
+
+	# Prepends daily news url to links
+	article_links = ['http://www.nydailynews.com{0}'.format(l) for l in tmp_article_links]
+	#print (article_links)
+
+	# Remove paginated links
+	news_links = [y for y in article_links if not '&page=' in y]
+	#print (news_links)
+
+	newspaper_api_dict(news_links)
+
+	write_to_file()
+
+
+if __name__ == '__main__':
+    main()
