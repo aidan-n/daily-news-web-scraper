@@ -34,6 +34,7 @@ On Ubuntu:
 
 Install python3. To check if you have it:
 > $ python3 --version
+
 There is a great guide on having python2/3 simultaneously here: http://python-guide-pt-br.readthedocs.io/en/latest/starting/install3/linux/#install3-linux
 
 Install Beautiful Soup if you haven't before:
