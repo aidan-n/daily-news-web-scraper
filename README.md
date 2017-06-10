@@ -28,3 +28,22 @@ EDIT: 4/27/17 - Completed
 - [X] Extract titles of articles, dates, and author (from HTML tags) | EDIT: 4/27/17 Completed with the newspaper API
 - [ ] :construction: Connect Google Sheets to scraper
 - [ ] :construction: Display the article content on web
+
+## Installation
+On Ubuntu:
+
+Install python3. To check if you have it:
+> $ python3 --version
+There is a great guide on having python2/3 simultaneously here: http://python-guide-pt-br.readthedocs.io/en/latest/starting/install3/linux/#install3-linux
+
+Install Beautiful Soup if you haven't before:
+> $ pip install bs4
+Install newspaper:
+
+Install newspaper:
+> $ pip3 install newspaper3k
+
+Then just clone the repo (guide here: https://help.github.com/articles/cloning-a-repository/)
+
+cd into the repo, and run:
+> $ python3 tdnscraper.py 
