@@ -38,7 +38,6 @@ There is a great guide on having python2/3 simultaneously here: http://python-gu
 
 Install Beautiful Soup if you haven't before:
 > $ pip install bs4
-Install newspaper:
 
 Install newspaper:
 > $ pip3 install newspaper3k
