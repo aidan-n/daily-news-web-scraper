@@ -15,7 +15,7 @@ tmp_article_details = {}
 def set_search_year():
 	while True:
 		search_year = input("Please enter the year to search for: ")
-		if len(search_year) = 4:
+		if len(search_year) == 4:
 			break
 		print("Please enter a valid four-digit year: ")
 	return search_year
